@@ -1,0 +1,38 @@
+:root {
+  color: #1f2933;
+  background:
+    radial-gradient(circle at top, rgba(183, 227, 168, 0.38), transparent 28%),
+    linear-gradient(180deg, #f7f3e7 0%, #fbfaf6 46%, #ffffff 100%);
+  font-family: 'Rubik', 'Segoe UI', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  direction: rtl;
+  background-color: #fbfaf6;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100svh;
+}

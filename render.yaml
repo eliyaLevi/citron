@@ -1,0 +1,39 @@
+databases:
+  - name: citron-db
+    databaseName: citron
+    user: citron
+    plan: free
+
+services:
+  - type: web
+    name: citron-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /api/customers
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: citron-db
+          property: connectionString
+      - key: DB_SYNCHRONIZE
+        value: "true"
+      - key: FRONTEND_ORIGIN
+        fromService:
+          type: web
+          name: citron-client
+          property: host
+
+  - type: web
+    name: citron-client
+    runtime: static
+    rootDir: client
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: citron-api
+          property: host
